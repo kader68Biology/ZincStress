@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Développement embryonnaire - L3 Génétique</title>
+  <link rel="stylesheet" href="css/style.css"/>
+  <script defer src="js/main.js"></script>
+</head>
+<body>
+  <header>
+    <h1>Développement embryonnaire – Aspects génétiques (L3)</h1>
+    <nav>
+      <ul id="nav">
+        <li><a href="#chap1">1. Embryogenèse comparée</a></li>
+        <li><a href="#chap2">2. Morphogènes maternels</a></li>
+        <li><a href="#chap3">3. Gènes zygotiques de segmentation</a></li>
+        <li><a href="#live">Cours en direct</a></li>
+        <li><a href="#quiz">Contrôle continu</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <!-- CHAPITRE 1 -->
+    <section id="chap1" class="chapitre">
+      <h2>1. Rappel de l'embryogenèse comparée</h2>
+      <p>
+        Ce premier chapitre présente les grandes étapes du développement précoce
+        chez trois modèles : amphibiens, échinodermes et arthropodes.
+      </p>
+
+      <div class="grid-3">
+        <figure>
+          <img src="assets/img/amphibiens.jpg" alt="Amphibiens"/>
+          <figcaption>
+            <strong>Amphibiens</strong> : segmentation holoblastique inégale, gastrulation par invagination.
+          </figcaption>
+        </figure>
+        <figure>
+          <img src="assets/img/echinodermes.jpg" alt="Échinodermes"/>
+          <figcaption>
+            <strong>Échinodermes</strong> : segmentation radiale, gastrulation par invagination + ingression.
+          </figcaption>
+        </figure>
+        <figure>
+          <img src="assets/img/arthropodes.jpg" alt="Arthropodes"/>
+          <figcaption>
+            <strong>Arthropodes</strong> : segmentation superficielle, blastoderme centripète.
+          </figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- CHAPITRE 2 -->
+    <section id="chap2" class="chapitre">
+      <h2>2. Contrôle génétique par les morphogènes maternels</h2>
+      <p>
+        Les produits géniques d'origine maternelle créent des gradients de
+        morphogènes (ex. Bicoid et Nanos chez <em>Drosophila</em>) qui
+        établissent les axes corporels.
+      </p>
+      <img src="assets/img/morphogene.svg" alt="Gradient Bicoid" class="center"/>
+      <p>
+        Vidéo : <a href="https://youtu.be/XXXXXXX" target="_blank">Animation Bicoid/Nanos (5 min)</a>
+      </p>
+    </section>
+
+    <!-- CHAPITRE 3 -->
+    <section id="chap3" class="chapitre">
+      <h2>3. Gènes de segmentation zygotiques</h2>
+      <p>
+        Les gènes zygotiques se succèdent en cascade : gènes de la polarité,
+        paires-règles, segmentaires. Leur expression est détectable par
+        hybridation in situ.
+      </p>
+      <video controls width="100%">
+        <source src="assets/videos/segmentation.mp4" type="video/mp4"/>
+      </video>
+    </section>
+
+    <!-- VISIO -->
+    <section id="live" class="chapitre">
+      <h2>Cours en direct (webcam)</h2>
+      <button id="startBtn">Démarrer la caméra</button>
+      <div id="videos">
+        <video id="localVideo" autoplay muted></video>
+        <video id="remoteVideo" autoplay></video>
+      </div>
+      <script type="module" src="js/webrtc.js"></script>
+    </section>
+
+    <!-- QUIZ -->
+    <section id="quiz" class="chapitre">
+      <h2>Contrôle continu</h2>
+      <div id="quizContainer"></div>
+      <button id="submitQuiz">Valider mes réponses</button>
+      <p id="quizResult"></p>
+      <script type="module" src="js/quiz.js"></script>
+    </section>
+  </main>
+
+  <footer>
+    <p>Master L3 Biologie - Université XYZ – 2025</p>
+  </footer>
+</body>
+</html>
