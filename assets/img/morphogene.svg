@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="600" height="300" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bicoidGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#2ecc71;stop-opacity:1" />
+      <stop offset="40%" style="stop-color:#2ecc71;stop-opacity:0.8" />
+      <stop offset="70%" style="stop-color:#2ecc71;stop-opacity:0.3" />
+      <stop offset="100%" style="stop-color:#2ecc71;stop-opacity:0" />
+    </linearGradient>
+    <linearGradient id="nanosGradient" x1="100%" y1="0%" x2="0%" y2="0%">
+      <stop offset="0%" style="stop-color:#e74c3c;stop-opacity:1" />
+      <stop offset="40%" style="stop-color:#e74c3c;stop-opacity:0.8" />
+      <stop offset="70%" style="stop-color:#e74c3c;stop-opacity:0.3" />
+      <stop offset="100%" style="stop-color:#e74c3c;stop-opacity:0" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="600" height="300" fill="#f8f9fa"/>
+  
+  <!-- Embryo outline -->
+  <ellipse cx="300" cy="150" rx="250" ry="80" fill="none" stroke="#34495e" stroke-width="3"/>
+  
+  <!-- Bicoid gradient (anterior) -->
+  <ellipse cx="300" cy="150" rx="245" ry="75" fill="url(#bicoidGradient)" opacity="0.7"/>
+  
+  <!-- Nanos gradient (posterior) -->
+  <ellipse cx="300" cy="150" rx="245" ry="75" fill="url(#nanosGradient)" opacity="0.7"/>
+  
+  <!-- Labels -->
+  <text x="100" y="40" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#2ecc71">
+    Bicoid (Antérieur)
+  </text>
+  <text x="420" y="40" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#e74c3c">
+    Nanos (Postérieur)
+  </text>
+  
+  <!-- Arrows -->
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" 
+     refX="0" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#34495e" />
+    </marker>
+  </defs>
+  
+  <!-- Anterior-Posterior axis -->
+  <line x1="50" y1="150" x2="550" y2="150" stroke="#34495e" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <text x="280" y="140" font-family="Arial, sans-serif" font-size="12" fill="#34495e">
+    Axe antéro-postérieur
+  </text>
+  
+  <!-- Concentration curves -->
+  <g transform="translate(50, 200)">
+    <!-- Bicoid curve -->
+    <path d="M 0 50 Q 100 0 200 40 Q 300 50 500 50" stroke="#2ecc71" stroke-width="3" fill="none"/>
+    <!-- Nanos curve -->
+    <path d="M 500 50 Q 400 0 300 40 Q 200 50 0 50" stroke="#e74c3c" stroke-width="3" fill="none"/>
+    
+    <!-- Axes -->
+    <line x1="0" y1="60" x2="500" y2="60" stroke="#666" stroke-width="1"/>
+    <line x1="0" y1="0" x2="0" y2="60" stroke="#666" stroke-width="1"/>
+    
+    <!-- Labels -->
+    <text x="250" y="80" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#666">
+      Position le long de l'embryon
+    </text>
+    <text x="-40" y="30" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#666" transform="rotate(-90, -40, 30)">
+      Concentration
+    </text>
+    
+    <!-- Legend -->
+    <line x1="400" y1="10" x2="420" y2="10" stroke="#2ecc71" stroke-width="3"/>
+    <text x="425" y="15" font-family="Arial, sans-serif" font-size="11" fill="#2ecc71">Bicoid</text>
+    <line x1="400" y1="25" x2="420" y2="25" stroke="#e74c3c" stroke-width="3"/>
+    <text x="425" y="30" font-family="Arial, sans-serif" font-size="11" fill="#e74c3c">Nanos</text>
+  </g>
+  
+  <!-- Title -->
+  <text x="300" y="25" font-family="Arial, sans-serif" font-size="18" font-weight="bold" text-anchor="middle" fill="#2c3e50">
+    Gradients de morphogènes maternels chez Drosophila
+  </text>
+</svg>
