@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Learning Drosophila - L3 Biotechnologie</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+        
+        .header h1 {
+            color: #667eea;
+            margin-bottom: 10px;
+            font-size: 2.5em;
+        }
+        
+        .header p {
+            color: #666;
+            font-size: 1.1em;
+        }
+        
+        .login-section {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .login-form {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            color: #555;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+        
+        .form-group input:focus {
+            border-color: #667eea;
+            outline: none;
+        }
+        
+        .btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: transform 0.2s;
+            width: 100%;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+        
+        .content-section {
+            display: none;
+        }
+        
+        .tabs {
+            display: flex;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px 15px 0 0;
+            overflow: hidden;
+            margin-bottom: 0;
+        }
+        
+        .tab-btn {
+            flex: 1;
+            padding: 15px;
+            background: #f8f9fa;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            color: #666;
+            transition: all 0.3s;
+        }
+        
+        .tab-btn.active {
+            background: #667eea;
+            color: white;
+        }
+        
+        .tab-content {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 0 0 15px 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            margin-bottom: 30px;
+        }
+        
+        .chapter {
+            margin-bottom: 30px;
+            padding: 20px;
+            border-left: 4px solid #667eea;
+            background: #f8f9fa;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .chapter h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+        
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            margin: 20px 0;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        .qcm-section {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        
+        .question {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .options {
+            margin-top: 10px;
+        }
+        
+        .option {
+            margin: 8px 0;
+            padding: 10px;
+            background: #e9ecef;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .option:hover {
+            background: #dee2e6;
+        }
+        
+        .option.selected {
+            background: #667eea;
+            color: white;
+        }
+        
+        .students-list {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        .students-list th,
+        .students-list td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .students-list th {
+            background: #667eea;
+            color: white;
+        }
+        
+        .students-list tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+        
+        .grade {
+            font-weight: bold;
+        }
+        
+        .present {
+            color: #28a745;
+            font-weight: bold;
+        }
+        
+        .absent {
+            color: #dc3545;
+            font-weight: bold;
+        }
+        
+        .admin-panel {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        .success {
+            color: #28a745;
+            font-weight: bold;
+        }
+        
+        .error {
+            color: #dc3545;
+            font-weight: bold;
+        }
+        
+        .logout-btn {
+            background: #dc3545;
+            color: white;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            float: right;
+        }
+        
+        .logout-btn:hover {
+            background: #c82333;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .tabs {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎓 E-Learning Drosophila</h1>
+            <p>Module : Aspects Génétiques du Développement Embryonnaire - L3 Biotechnologie</p>
+            <p>Faculté des Sciences ABB - Département de Biotechnologie</p>
+        </div>
+
+        <!-- Login Section -->
+        <div class="login-section" id="loginSection">
+            <div class="login-form">
+                <h2 style="text-align: center; margin-bottom: 20px; color: #667eea;">🔐 Connexion</h2>
+                <div class="form-group">
+                    <label for="username">Nom d'utilisateur:</label>
+                    <input type="text" id="username" placeholder="Votre nom complet">
+                </div>
+                <div class="form-group">
+                    <label for="password">Mot de passe:</label>
+                    <input type="password" id="password" placeholder="Mot de passe">
+                </div>
+                <button class="btn" onclick="login()">Se connecter</button>
+                <div id="loginMessage" style="margin-top: 15px; text-align: center;"></div>
+            </div>
+        </div>
+
+        <!-- Content Section (Hidden by default) -->
+        <div class="content-section" id="contentSection">
+            <button class="logout-btn" onclick="logout()">Déconnexion</button>
+            
+            <!-- Tabs -->
+            <div class="tabs">
+                <button class="tab-btn active" onclick="showTab('cours')">📚 Cours</button>
+                <button class="tab-btn" onclick="showTab('qcm')">📝 QCM</button>
+                <button class="tab-btn" onclick="showTab('etudiants')">👥 Étudiants</button>
+                <button class="tab-btn" onclick="showTab('admin')" id="adminTab" style="display: none;">⚙️ Admin</button>
+            </div>
+
+            <!-- Cours Tab -->
+            <div class="tab-content" id="coursTab">
+                <h2>📖 Cours - Développement Embryonnaire de Drosophila</h2>
+                
+                <!-- Chapter 1 -->
+                <div class="chapter">
+                    <h3>Chapitre 1: Embryogenèse Comparée</h3>
+                    <p><strong>Objectifs:</strong> Comprendre les grandes étapes du développement chez les amphibiens, échinodermes et arthropodes.</p>
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/8ILQOFAgaXE" allowfullscreen></iframe>
+                    </div>
+                    <p><strong>Contenu:</strong> Cleavage, blastulation, gastrulation, neurulation. Comparaison des mécanismes de segmentation.</p>
+                </div>
+
+                <!-- Chapter 2 -->
+                <div class="chapter">
+                    <h3>Chapitre 2: Cycle de Vie et Ovarioles</h3>
+                    <p><strong>Objectifs:</strong> Maîtriser le cycle de vie de Drosophila et l'organisation des ovarioles.</p>
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/9gbv1DNnQ8Y" allowfullscreen></iframe>
+                    </div>
+                    <p><strong>Contenu:</strong> Phases de l'ovogenèse, structure des ovarioles, maturation de l'ovocyte.</p>
+                </div>
+
+                <!-- Chapter 3 -->
+                <div class="chapter">
+                    <h3>Chapitre 3: Morphogènes Maternels</h3>
+                    <p><strong>Objectifs:</strong> Comprendre l'établissement des axes corporels par les morphogènes maternels.</p>
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/kqNtG8vJZg4" allowfullscreen></iframe>
+                    </div>
+                    <p><strong>Contenu:</strong> Rôles de Bicoid, Nanos, Dorsal, Gurken. Mécanismes de polarité.</p>
+                </div>
+
+                <!-- Chapter 4 -->
+                <div class="chapter">
+                    <h3>Chapitre 4: Gènes de Segmentation</h3>
+                    <p><strong>Objectifs:</strong> Maîtriser la cascade de régulation génétique des gènes de segmentation.</p>
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/5bZuGz9b8dE" allowfullscreen></iframe>
+                    </div>
+                    <p><strong>Contenu:</strong> Gap genes, pair-rule genes, segment polarity genes. Voie Hedgehog.</p>
+                </div>
+
+                <!-- Chapter 5 -->
+                <div class="chapter">
+                    <h3>Chapitre 5: Gènes Homeotiques</h3>
+                    <p><strong>Objectifs:</strong> Comprendre le rôle des gènes Hox dans la spécification segmentaire.</p>
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/aBcDeFgHiJk" allowfullscreen></iframe>
+                    </div>
+                    <p><strong>Contenu:</strong> Complexes Hox, colinéarité, mutations homeotiques, implications évolutives.</p>
+                </div>
+            </div>
+
+            <!-- QCM Tab -->
+            <div class="tab-content" id="qcmTab" style="display: none;">
+                <h2>📝 Questionnaire de Compréhension</h2>
+                
+                <div class="qcm-section">
+                    <div class="question">
+                        <h4>1. Quel morphogène contrôle la polarité antéro-postérieure ?</h4>
+                        <div class="options">
+                            <div class="option" onclick="selectOption(this, 'A')">A) Dorsal</div>
+                            <div class="option" onclick="selectOption(this, 'B')">B) Bicoid</div>
+                            <div class="option" onclick="selectOption(this, 'C')">C) Nanos</div>
+                            <div class="option" onclick="selectOption(this, 'D')">D) Gurken</div>
+                            <div class="option" onclick="selectOption(this, 'E')">E) Spätzle</div>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <h4>2. Quel gène est un exemple de pair-rule gene ?</h4>
+                        <div class="options">
+                            <div class="option" onclick="selectOption(this, 'A')">A) hunchback</div>
+                            <div class="option" onclick="selectOption(this, 'B')">B) even-skipped</div>
+                            <div class="option" onclick="selectOption(this, 'C')">C) engrailed</div>
+                            <div class="option" onclick="selectOption(this, 'D')">D) Ultrabithorax</div>
+                            <div class="option" onclick="selectOption(this, 'E')">E) caudal</div>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <h4>3. Où se déroule le développement de l'ovocyte ?</h4>
+                        <div class="options">
+                            <div class="option" onclick="selectOption(this, 'A')">A) Dans les testicules</div>
+                            <div class="option" onclick="selectOption(this, 'B')">B) Dans les ovarioles</div>
+                            <div class="option" onclick="selectOption(this, 'C')">C) Dans le corps gras</div>
+                            <div class="option" onclick="selectOption(this, 'D')">D) Dans l'oviducte</div>
+                            <div class="option" onclick="selectOption(this, 'E')">E) Dans la chambre ovarienne</div>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <h4>4. Quel est le rôle des gènes Hox ?</h4>
+                        <div class="options">
+                            <div class="option" onclick="selectOption(this, 'A')">A) Définir l'identité des segments</div>
+                            <div class="option" onclick="selectOption(this, 'B')">B) Contrôler la segmentation primaire</div>
+                            <div class="option" onclick="selectOption(this, 'C')">C) Réguler la fécondation</div>
+                            <div class="option" onclick="selectOption(this, 'D')">D) Activer la synthèse de vitellus</div>
+                            <div class="option" onclick="selectOption(this, 'E')">E) Inhiber l'apoptose</div>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <h4>5. Quel processus est régulé par la voie Hedgehog ?</h4>
+                        <div class="options">
+                            <div class="option" onclick="selectOption(this, 'A')">A) Communication entre cellules segmentaires</div>
+                            <div class="option" onclick="selectOption(this, 'B')">B) Formation des axes corporels</div>
+                            <div class="option" onclick="selectOption(this, 'C')">C) Dépôt de réserves nutritives</div>
+                            <div class="option" onclick="selectOption(this, 'D')">D) Activation des gènes maternels</div>
+                            <div class="option" onclick="selectOption(this, 'E')">E) Synthèse de la membrane vitelline</div>
+                        </div>
+                    </div>
+
+                    <button class="btn" onclick="submitQCM()" style="margin-top: 20px;">Soumettre les réponses</button>
+                    <div id="qcmResult" style="margin-top: 20px; text-align: center;"></div>
+                </div>
+            </div>
+
+            <!-- Étudiants Tab -->
+            <div class="tab-content" id="etudiantsTab" style="display: none;">
+                <h2>👥 Liste des Étudiants - Année Universitaire 2024-2025</h2>
+                <table class="students-list">
+                    <thead>
+                        <tr>
+                            <th>Nom</th>
+                            <th>Présence</th>
+                            <th>CC (/20)</th>
+                            <th>EF (/20)</th>
+                            <th>Moyenne (/20)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Ali Benali</td>
+                            <td class="present">Présent</td>
+                            <td class="grade">16</td>
+                            <td class="grade">14</td>
+                            <td class="grade">15</td>
+                        </tr>
+                        <tr>
+                            <td>Camille Dubois</td>
+                            <td class="present">Présent</td>
+                            <td class="grade">18</td>
+                            <td class="grade">17</td>
+                            <td class="grade">17.5</td>
+                        </tr>
+                        <tr>
+                            <td>David Moreau</td>
+                            <td class="absent">Absent</td>
+                            <td class="grade">-</td>
+                            <td class="grade">-</td>
+                            <td class="grade">-</td>
+                        </tr>
+                        <tr>
+                            <td>Emma Laurent</td>
+                            <td class="present">Présent</td>
+                            <td class="grade">15</td>
+                            <td class="grade">16</td>
+                            <td class="grade">15.5</td>
+                        </tr>
+                        <tr>
+                            <td>François Martin</td>
+                            <td class="present">Présent</td>
+                            <td class="grade">14</td>
+                            <td class="grade">13</td>
+                            <td class="grade">13.5</td>
+                        </tr>
+                        <tr>
+                            <td>Isabelle Rousseau</td>
+                            <td class="present">Présent</td>
+                            <td class="grade">17</td>
+                            <td class="grade">18</td>
+                            <td class="grade">17.5</td>
+                        </tr>
+                        <tr>
+                            <td>Julien Petit</td>
+                            <td class="absent">Absent</td>
+                            <td class="grade">-</td>
+                            <td class="grade">-</td>
+                            <td class="grade">-</td>
+                        </tr>
+                        <tr>
+                            <td>Laura Bernard</td>
+                            <td class="present">Présent</td>
+                            <td class="grade">19</td>
+                            <td class="grade">18</td>
+                            <td class="grade">18.5</td>
+                        </tr>
+                        <tr>
+                            <td>Marc Dubois</td>
+                            <td class="present">Présent</td>
+                            <td class="grade">13</td>
+                            <td class="grade">14</td>
+                            <td class="grade">13.5</td>
+                        </tr>
+                        <tr>
+                            <td>Nathalie Simon</td>
+                            <td class="present">Présent</td>
+                            <td class="grade">16</td>
+                            <td class="grade">15</td>
+                            <td class="grade">15.5</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Admin Tab -->
+            <div class="tab-content" id="adminTabContent" style="display: none;">
+                <h2>⚙️ Panneau Administratif</h2>
+                <div class="admin-panel">
+                    <h3>Modifier les fichiers de cours</h3>
+                    <p>Accès réservé aux enseignants pour la mise à jour des documents.</p>
+                    <button class="btn" style="background: #28a745;">Uploader des fichiers</button>
+                </div>
+                <div class="admin-panel">
+                    <h3>Gérer les évaluations</h3>
+                    <p>Création et modification des TD et examens.</p>
+                    <button class="btn" style="background: #ffc107; color: #333;">Créer un nouveau TD</button>
+                    <button class="btn" style="background: #dc3545; margin-top: 10px;">Créer un examen</button>
+                </div>
+                <div class="admin-panel">
+                    <h3>Gérer les étudiants</h3>
+                    <p>Ajout, modification ou suppression d'étudiants.</p>
+                    <button class="btn" style="background: #17a2b8;">Ajouter un étudiant</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Données des étudiants
+        const students = [
+            "Ali Benali", "Camille Dubois", "David Moreau", "Emma Laurent", 
+            "François Martin", "Isabelle Rousseau", "Julien Petit", 
+            "Laura Bernard", "Marc Dubois", "Nathalie Simon"
+        ];
+
+        // Données de connexion
+        const studentPasswords = {
+            "Ali Benali": "L3droso2025",
+            "Camille Dubois": "L3droso2025",
+            "David Moreau": "L3droso2025",
+            "Emma Laurent": "L3droso2025",
+            "François Martin": "L3droso2025",
+            "Isabelle Rousseau": "L3droso2025",
+            "Julien Petit": "L3droso2025",
+            "Laura Bernard": "L3droso2025",
+            "Marc Dubois": "L3droso2025",
+            "Nathalie Simon": "L3droso2025"
+        };
+
+        const adminPassword = "DrososegCTRLL3";
+        let currentUser = null;
+        let isAdmin = false;
+
+        // Fonction de connexion
+        function login() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const messageDiv = document.getElementById('loginMessage');
+
+            if (password === adminPassword && username === "Administrateur") {
+                currentUser = "Administrateur";
+                isAdmin = true;
+                showContent();
+                document.getElementById('adminTab').style.display = 'block';
+                messageDiv.innerHTML = '<span class="success">Connexion administrateur réussie!</span>';
+            } else if (students.includes(username) && password === studentPasswords[username]) {
+                currentUser = username;
+                isAdmin = false;
+                showContent();
+                document.getElementById('adminTab').style.display = 'none';
+                messageDiv.innerHTML = '<span class="success">Connexion réussie! Bienvenue ' + username + '</span>';
+            } else {
+                messageDiv.innerHTML = '<span class="error">Nom d\'utilisateur ou mot de passe incorrect!</span>';
+            }
+        }
+
+        // Afficher le contenu principal
+        function showContent() {
+            document.getElementById('loginSection').style.display = 'none';
+            document.getElementById('contentSection').style.display = 'block';
+        }
+
+        // Déconnexion
+        function logout() {
+            document.getElementById('loginSection').style.display = 'block';
+            document.getElementById('contentSection').style.display = 'none';
+            document.getElementById('username').value = '';
+            document.getElementById('password').value = '';
+            document.getElementById('loginMessage').innerHTML = '';
+            currentUser = null;
+            isAdmin = false;
+        }
+
+        // Navigation par onglets
+        function showTab(tabName) {
+            // Cacher tous les onglets
+            document.getElementById('coursTab').style.display = 'none';
+            document.getElementById('qcmTab').style.display = 'none';
+            document.getElementById('etudiantsTab').style.display = 'none';
+            document.getElementById('adminTabContent').style.display = 'none';
+            
+            // Désactiver tous les boutons
+            const tabButtons = document.querySelectorAll('.tab-btn');
+            tabButtons.forEach(btn => btn.classList.remove('active'));
+            
+            // Afficher l'onglet sélectionné
+            switch(tabName) {
+                case 'cours':
+                    document.getElementById('coursTab').style.display = 'block';
+                    event.target.classList.add('active');
+                    break;
+                case 'qcm':
+                    document.getElementById('qcmTab').style.display = 'block';
+                    event.target.classList.add('active');
+                    break;
+                case 'etudiants':
+                    document.getElementById('etudiantsTab').style.display = 'block';
+                    event.target.classList.add('active');
+                    break;
+                case 'admin':
+                    if (isAdmin) {
+                        document.getElementById('adminTabContent').style.display = 'block';
+                        event.target.classList.add('active');
+                    }
+                    break;
+            }
+        }
+
+        // Gestion des QCM
+        function selectOption(element, value) {
+            // Désélectionner toutes les options de cette question
+            const options = element.parentElement.querySelectorAll('.option');
+            options.forEach(opt => opt.classList.remove('selected'));
+            
+            // Sélectionner l'option cliquée
+            element.classList.add('selected');
+            
+            // Stocker la réponse
+            const question = element.parentElement.parentElement;
+            question.dataset.selected = value;
+        }
+
+        // Soumission du QCM
+        function submitQCM() {
+            const questions = document.querySelectorAll('.question');
+            let score = 0;
+            const total = questions.length;
+            
+            // Réponses correctes
+            const correctAnswers = ['B', 'B', 'B', 'A', 'A'];
+            
+            questions.forEach((question, index) => {
+                const selected = question.dataset.selected;
+                if (selected === correctAnswers[index]) {
+                    score++;
+                }
+            });
+            
+            const percentage = Math.round((score / total) * 100);
+            const resultDiv = document.getElementById('qcmResult');
+            
+            resultDiv.innerHTML = `
+                <h3>Résultats du QCM</h3>
+                <p>Score: ${score}/${total} (${percentage}%)</p>
+                <p>${getScoreMessage(percentage)}</p>
+            `;
+        }
+
+        // Message selon le score
+        function getScoreMessage(score) {
+            if (score >= 80) return "Excellent travail! 🎉";
+            if (score >= 60) return "Bon travail! 👍";
+            if (score >= 40) return "Continuez à réviser! 📚";
+            return "Besoin de réviser davantage! 🎯";
+        }
+
+        // Initialisation
+        document.addEventListener('DOMContentLoaded', function() {
+            // Afficher le premier onglet par défaut
+            showTab('cours');
+        });
+    </script>
+</body>
+</html>
