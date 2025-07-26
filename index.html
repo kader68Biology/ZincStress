@@ -3,912 +3,1201 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Drosophila Development - Cours E-learning</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>E-Learning Drosophila - L3 Biotechnologie</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-
-        :root {
-            --primary: #4a6fa5;
-            --secondary: #6b8cbc;
-            --accent: #ff6b6b;
-            --light: #f8f9fa;
-            --dark: #343a40;
-            --success: #28a745;
-            --warning: #ffc107;
-            --info: #17a2b8;
-        }
-
+        
         body {
-            font-family: 'Roboto', sans-serif;
-            background: linear-gradient(135deg, #f5f7fa 0%, #e4edf5 100%);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
             color: #333;
-            line-height: 1.6;
         }
-
-        header {
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            color: white;
-            padding: 1rem 0;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        .header-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 2rem;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .logo-icon {
-            font-size: 2.5rem;
-            color: white;
-        }
-
-        .logo-text {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 700;
-            font-size: 1.8rem;
-        }
-
-        .logo-text span {
-            color: var(--accent);
-        }
-
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
-
-        nav a {
-            color: white;
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 1.1rem;
-            transition: all 0.3s ease;
-            padding: 0.5rem 1rem;
-            border-radius: 4px;
-        }
-
-        nav a:hover {
-            background: rgba(255, 255, 255, 0.1);
-        }
-
-        .hero {
-            background: linear-gradient(rgba(74, 111, 165, 0.85), rgba(74, 111, 165, 0.9)), url('https://images.unsplash.com/photo-1618491452079-7c30a51f5d3a?ixlib=rb-4.0.3') no-repeat center center/cover;
-            height: 500px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: white;
-            padding: 2rem;
-        }
-
-        .hero-content {
-            max-width: 800px;
-        }
-
-        .hero h1 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-        }
-
-        .hero p {
-            font-size: 1.3rem;
-            margin-bottom: 2rem;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
-        }
-
-        .btn {
-            display: inline-block;
-            background: var(--accent);
-            color: white;
-            padding: 12px 30px;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.1rem;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
-        }
-
-        .btn:hover {
-            background: #ff5252;
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
-        }
-
+        
         .container {
             max-width: 1200px;
-            margin: 3rem auto;
-            padding: 0 2rem;
+            margin: 0 auto;
+            padding: 20px;
         }
-
-        .section-title {
+        
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
             text-align: center;
-            margin-bottom: 3rem;
-            font-family: 'Montserrat', sans-serif;
-            color: var(--primary);
-            position: relative;
         }
-
-        .section-title:after {
-            content: '';
-            display: block;
-            width: 80px;
-            height: 4px;
-            background: var(--accent);
-            margin: 15px auto;
-            border-radius: 2px;
+        
+        .header h1 {
+            color: #667eea;
+            margin-bottom: 10px;
+            font-size: 2.5em;
         }
-
-        .episodes-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .episode-card {
-            background: white;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-            transition: all 0.3s ease;
-            display: flex;
-            flex-direction: column;
-            height: 100%;
-        }
-
-        .episode-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
-        }
-
-        .episode-thumbnail {
-            height: 180px;
-            background: linear-gradient(45deg, var(--primary), var(--secondary));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 3rem;
-        }
-
-        .episode-content {
-            padding: 1.5rem;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .episode-number {
-            background: var(--accent);
-            color: white;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            margin-bottom: 1rem;
-        }
-
-        .episode-title {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.3rem;
-            margin-bottom: 1rem;
-            color: var(--dark);
-        }
-
-        .episode-description {
+        
+        .header p {
             color: #666;
-            margin-bottom: 1.5rem;
-            flex-grow: 1;
+            font-size: 1.1em;
         }
-
-        .episode-meta {
+        
+        .login-section {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .login-form {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            color: #555;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+        
+        .form-group input:focus {
+            border-color: #667eea;
+            outline: none;
+        }
+        
+        .btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: transform 0.2s;
+            width: 100%;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+        
+        .btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .content-section {
+            display: none;
+        }
+        
+        .tabs {
+            display: flex;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px 15px 0 0;
+            overflow: hidden;
+            margin-bottom: 0;
+        }
+        
+        .tab-btn {
+            flex: 1;
+            padding: 15px;
+            background: #f8f9fa;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            color: #666;
+            transition: all 0.3s;
+        }
+        
+        .tab-btn.active {
+            background: #667eea;
+            color: white;
+        }
+        
+        .tab-content {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 0 0 15px 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            margin-bottom: 30px;
+        }
+        
+        .chapter {
+            margin-bottom: 30px;
+            padding: 20px;
+            border-left: 4px solid #667eea;
+            background: #f8f9fa;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .chapter h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+            cursor: pointer;
             display: flex;
             justify-content: space-between;
-            color: #888;
-            font-size: 0.9rem;
-            border-top: 1px solid #eee;
-            padding-top: 1rem;
+            align-items: center;
         }
-
-        .video-player {
+        
+        .chapter h3:hover {
+            color: #5a67d8;
+        }
+        
+        .chapter-content {
+            display: none;
+            margin-top: 15px;
+            padding: 15px;
             background: white;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            margin-bottom: 3rem;
+            border-radius: 8px;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
         }
-
+        
+        .chapter-content.active {
+            display: block;
+        }
+        
         .video-container {
             position: relative;
-            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            padding-bottom: 56.25%;
             height: 0;
+            margin: 20px 0;
+            border-radius: 10px;
             overflow: hidden;
         }
-
-        .video-container video {
+        
+        .video-container iframe {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: #000;
+            border: none;
         }
-
-        .video-info {
-            padding: 1.5rem;
+        
+        .qcm-section {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
         }
-
-        .video-title {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.8rem;
-            margin-bottom: 1rem;
-            color: var(--primary);
-        }
-
-        .video-description {
-            color: #555;
-            margin-bottom: 1.5rem;
-            line-height: 1.8;
-        }
-
-        .features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin: 4rem 0;
-        }
-
-        .feature-card {
+        
+        .question {
+            margin-bottom: 20px;
+            padding: 15px;
             background: white;
-            padding: 2rem;
-            border-radius: 12px;
-            text-align: center;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
-            transition: all 0.3s ease;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
-
-        .feature-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-        }
-
-        .feature-icon {
-            font-size: 3rem;
-            color: var(--primary);
-            margin-bottom: 1.5rem;
-        }
-
-        .feature-title {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.3rem;
-            margin-bottom: 1rem;
-            color: var(--dark);
-        }
-
-        .feature-description {
-            color: #666;
-        }
-
-        footer {
-            background: var(--dark);
-            color: white;
-            padding: 3rem 0 1.5rem;
-            margin-top: 3rem;
-        }
-
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            padding: 0 2rem;
-        }
-
-        .footer-column h3 {
-            font-family: 'Montserrat', sans-serif;
-            margin-bottom: 1.5rem;
-            position: relative;
-            padding-bottom: 0.5rem;
-        }
-
-        .footer-column h3:after {
-            content: '';
-            display: block;
-            width: 50px;
-            height: 3px;
-            background: var(--accent);
+        
+        .options {
             margin-top: 10px;
         }
-
-        .footer-column ul {
-            list-style: none;
+        
+        .option {
+            margin: 8px 0;
+            padding: 10px;
+            background: #e9ecef;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
         }
-
-        .footer-column ul li {
-            margin-bottom: 0.8rem;
+        
+        .option:hover {
+            background: #dee2e6;
         }
-
-        .footer-column ul li a {
-            color: #bbb;
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .footer-column ul li a:hover {
+        
+        .option.selected {
+            background: #667eea;
             color: white;
-            padding-left: 5px;
         }
-
-        .social-links {
-            display: flex;
-            gap: 1rem;
-            margin-top: 1rem;
+        
+        .students-list {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
         }
-
-        .social-links a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        
+        .students-list th,
+        .students-list td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .students-list th {
+            background: #667eea;
+            color: white;
+        }
+        
+        .students-list tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+        
+        .grade {
+            font-weight: bold;
+        }
+        
+        .present {
+            color: #28a745;
+            font-weight: bold;
+        }
+        
+        .absent {
+            color: #dc3545;
+            font-weight: bold;
+        }
+        
+        .admin-panel {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        .success {
+            color: #28a745;
+            font-weight: bold;
+        }
+        
+        .error {
+            color: #dc3545;
+            font-weight: bold;
+        }
+        
+        .logout-btn {
+            background: #dc3545;
+            color: white;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            float: right;
+        }
+        
+        .logout-btn:hover {
+            background: #c82333;
+        }
+        
+        .toggle-icon {
+            font-size: 1.2em;
+            transition: transform 0.3s;
+        }
+        
+        .toggle-icon.rotated {
+            transform: rotate(180deg);
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .loading-spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #667eea;
+            border-radius: 50%;
             width: 40px;
             height: 40px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            color: white;
-            transition: all 0.3s ease;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 10px;
         }
-
-        .social-links a:hover {
-            background: var(--accent);
-            transform: translateY(-3px);
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
-
-        .copyright {
-            text-align: center;
-            padding-top: 2rem;
-            margin-top: 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: #aaa;
-            font-size: 0.9rem;
-        }
-
+        
         @media (max-width: 768px) {
-            .header-content {
+            .container {
+                padding: 10px;
+            }
+            
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .tabs {
                 flex-direction: column;
-                gap: 1rem;
-            }
-
-            nav ul {
-                gap: 1rem;
-            }
-
-            .hero {
-                height: 400px;
-            }
-
-            .hero h1 {
-                font-size: 2.2rem;
-            }
-
-            .hero p {
-                font-size: 1.1rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .episodes-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .hero {
-                height: 350px;
-            }
-
-            .hero h1 {
-                font-size: 1.8rem;
-            }
-
-            .video-title {
-                font-size: 1.5rem;
             }
         }
     </style>
 </head>
 <body>
-    <header>
-        <div class="header-content">
-            <div class="logo">
-                <div class="logo-icon">
-                    <i class="fas fa-dna"></i>
-                </div>
-                <div class="logo-text">Drosophila<span>Dev</span></div>
-            </div>
-            <nav>
-                <ul>
-                    <li><a href="#home">Accueil</a></li>
-                    <li><a href="#episodes">Épisodes</a></li>
-                    <li><a href="#features">Fonctionnalités</a></li>
-                    <li><a href="#about">À propos</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
-
-    <section class="hero" id="home">
-        <div class="hero-content">
-            <h1>Développement Embryonnaire de la Drosophile</h1>
-            <p>Une série éducative complète sur le développement de Drosophila melanogaster</p>
-            <a href="#episodes" class="btn">Commencer l'apprentissage</a>
-        </div>
-    </section>
-
     <div class="container">
-        <h2 class="section-title">Vidéos Éducatives</h2>
-        
-        <!-- Video Player Section -->
-        <div class="video-player">
-            <div class="video-container">
-                <video controls poster="https://placehold.co/800x450/4a6fa5/ffffff?text=Drosophila+Development">
-                    <source src="#" type="video/mp4">
-                    Votre navigateur ne supporte pas la balise vidéo.
-                </video>
-            </div>
-            <div class="video-info">
-                <h3 class="video-title" id="current-video-title">Introduction au développement de la drosophile</h3>
-                <p class="video-description" id="current-video-description">Bienvenue dans notre voyage à travers le développement de l'embryon de drosophile. La drosophile est la pierre angulaire de la recherche en biologie du développement depuis plus d'un siècle. Dans cette série, nous allons explorer comment un simple œuf fécondé se transforme en un organisme complexe grâce à des processus génétiques et cellulaires orchestrés avec précision.</p>
+        <div class="header">
+            <h1>🎓 E-Learning Drosophila</h1>
+            <p>Module : Aspects Génétiques du Développement Embryonnaire - L3 Biotechnologie</p>
+            <p>Faculté des Sciences ABB - Département de Biotechnologie</p>
+        </div>
+
+        <!-- Login Section -->
+        <div class="login-section" id="loginSection">
+            <div class="login-form">
+                <h2 style="text-align: center; margin-bottom: 20px; color: #667eea;">🔐 Connexion</h2>
+                <div class="form-group">
+                    <label for="username">Nom d'utilisateur:</label>
+                    <input type="text" id="username" placeholder="Votre nom complet">
+                </div>
+                <div class="form-group">
+                    <label for="password">Mot de passe:</label>
+                    <input type="password" id="password" placeholder="Mot de passe">
+                </div>
+                <button class="btn" onclick="login()" id="loginBtn">Se connecter</button>
+                <div id="loginMessage" style="margin-top: 15px; text-align: center;"></div>
             </div>
         </div>
 
-        <!-- Episodes Grid -->
-        <div class="episodes-grid" id="episodes">
-            <!-- Episode 1 -->
-            <div class="episode-card" data-video="1">
-                <div class="episode-thumbnail">
-                    <i class="fas fa-play-circle"></i>
+        <!-- Content Section (Hidden by default) -->
+        <div class="content-section" id="contentSection">
+            <button class="logout-btn" onclick="logout()">Déconnexion</button>
+            
+            <!-- Tabs -->
+            <div class="tabs">
+                <button class="tab-btn active" onclick="showTab('cours')">📚 Cours</button>
+                <button class="tab-btn" onclick="showTab('qcm')">📝 QCM</button>
+                <button class="tab-btn" onclick="showTab('etudiants')">👥 Étudiants</button>
+                <button class="tab-btn" onclick="showTab('admin')" id="adminTab" style="display: none;">⚙️ Admin</button>
+            </div>
+
+            <!-- Cours Tab -->
+            <div class="tab-content" id="coursTab">
+                <h2>📖 Cours - Développement Embryonnaire de Drosophila</h2>
+                
+                <!-- Chapter 1 -->
+                <div class="chapter">
+                    <h3 onclick="toggleChapter('chapter1')">
+                        <span>Chapitre 1: Embryogenèse Comparée</span>
+                        <span class="toggle-icon" id="toggle-icon-1">▼</span>
+                    </h3>
+                    <div class="chapter-content" id="chapter1">
+                        <p><strong>Objectifs:</strong> Comprendre les grandes étapes du développement chez les amphibiens, échinodermes et arthropodes.</p>
+                        <div class="video-container">
+                            <iframe src="https://www.youtube.com/embed/8ILQOFAgaXE" allowfullscreen></iframe>
+                        </div>
+                        <h4>Contenu détaillé :</h4>
+                        <p><strong>Amphibiens (ex. Xénopus laevis) :</strong></p>
+                        <ul>
+                            <li><strong>Cleavage</strong> : Division cellulaire rapide sans croissance, formant une <strong>morula</strong>.</li>
+                            <li><strong>Blastulation</strong> : Formation d'un <strong>blastocyste</strong> avec une cavité centrale (blastocele).</li>
+                            <li><strong>Gastrulation</strong> : Réorganisation des cellules en trois couches germinales (ectoderme, mésoderme, endoderme) via des mouvements d'<strong>invagination</strong>, d'<strong>ingression</strong> et d'<strong>épithélisation</strong>.</li>
+                            <li><strong>Neurulation</strong> : Formation du <strong>tube neural</strong> par plissement de l'ectoderme.</li>
+                        </ul>
+                        
+                        <p><strong>Échinodermes (ex. oursin de mer) :</strong></p>
+                        <ul>
+                            <li><strong>Cleavage</strong> : Division égale et radiale, formant un <strong>blastocyste</strong> sphérique.</li>
+                            <li><strong>Blastulation</strong> : Le blastocyste est entouré d'une membrane vitelline.</li>
+                            <li><strong>Gastrulation</strong> : Invagination du mésoderme pour former le <strong>primitif archentéron</strong>.</li>
+                            <li><strong>Métamorphose</strong> : Les larves pléurotomes se transforment en adultes via la réorganisation des structures.</li>
+                        </ul>
+                        
+                        <p><strong>Arthropodes (ex. <em>Drosophila melanogaster</em>) :</strong></p>
+                        <ul>
+                            <li><strong>Cleavage</strong> : Division synchronisée de l'œuf syncytial, formant une <strong>syncitiotrophe</strong>.</li>
+                            <li><strong>Segmentation</strong> : Formation de segments distincts via des <strong>gènes de segmentation</strong> (gap, pair-rule, segment polarity).</li>
+                            <li><strong>Gastrulation</strong> : Ingression du mésoderme et formation de l'archentéron.</li>
+                            <li><strong>Métamorphose</strong> : Transformation radicale entre stade larvaire et adulte via la <strong>pupation</strong>.</li>
+                        </ul>
+                        
+                        <p><strong>Mécanismes fondamentaux de la segmentation :</strong></p>
+                        <ul>
+                            <li><strong>Axes corporels</strong> : Définis par des gradients de morphogènes (ex. <em>bicoid</em> et <em>nanos</em> chez <em>Drosophila</em>).</li>
+                            <li><strong>Segmentation</strong> : Chez les arthropodes, les segments sont formés par des gènes agissant en cascade (maternels → gap → pair-rule → segment polarity).</li>
+                            <li><strong>Comparaison</strong> :
+                                <ul>
+                                    <li><strong>Amphibiens/Échinodermes</strong> : Segmentation via des mouvements cellulaires (mouvements de convergence-extension).</li>
+                                    <li><strong>Arthropodes</strong> : Segmentation génétique précise avec des motifs répétitifs (ex. 14 segments chez <em>Drosophila</em>).</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
-                <div class="episode-content">
-                    <div class="episode-number">1</div>
-                    <h3 class="episode-title">Introduction au développement</h3>
-                    <p class="episode-description">Découvrez les bases du développement embryonnaire de la drosophile et son importance en biologie.</p>
-                    <div class="episode-meta">
-                        <span><i class="far fa-clock"></i> 12 min</span>
-                        <span><i class="fas fa-graduation-cap"></i> Niveau débutant</span>
+
+                <!-- Chapter 2 -->
+                <div class="chapter">
+                    <h3 onclick="toggleChapter('chapter2')">
+                        <span>Chapitre 2: Cycle de Vie et Ovarioles</span>
+                        <span class="toggle-icon" id="toggle-icon-2">▼</span>
+                    </h3>
+                    <div class="chapter-content" id="chapter2">
+                        <p><strong>Objectifs:</strong> Maîtriser le cycle de vie de Drosophila et l'organisation des ovarioles.</p>
+                        <div class="video-container">
+                            <iframe src="https://www.youtube.com/embed/9gbv1DNnQ8Y" allowfullscreen></iframe>
+                        </div>
+                        <h4>Contenu détaillé :</h4>
+                        <p><strong>Cycle de vie de <em>Drosophila melanogaster</em> :</strong></p>
+                        <ol>
+                            <li><strong>Œuf</strong> : Développé dans les <strong>ovarioles</strong> de la femelle.</li>
+                            <li><strong>Larve</strong> : Trois stades (L1, L2, L3) marqués par des mues.</li>
+                            <li><strong>Pupa</strong> : Stade immobile où se produit la <strong>métamorphose</strong>.</li>
+                            <li><strong>Adulte</strong> : Émergence après 4–5 jours (à 25°C).</li>
+                        </ol>
+                        
+                        <p><strong>Organisation des ovarioles :</strong></p>
+                        <ul>
+                            <li><strong>Structure</strong> : Chaque ovary contient 16–20 <strong>follicules</strong>, organisés en <strong>ovarioles tubulaires</strong>.</li>
+                            <li><strong>Phases de l'ovogenèse</strong> :
+                                <ol>
+                                    <li><strong>Multiplication germinale</strong> : Cellules germinales (cystoblasts) se divisent par mitose pour former un <strong>cyste</strong> de 16 cellules (1 ovocyte + 15 cellules nourricières).</li>
+                                    <li><strong>Maturation</strong> : Dépôt de <strong>réserves nutritives</strong> (yolk) et formation de la <strong>membrane vitelline</strong>.</li>
+                                    <li><strong>Encapsulation</strong> : Cellules folliculaires forment une couche autour de l'ovocyte.</li>
+                                    <li><strong>Ovulation</strong> : Libération de l'ovocyte mature dans l'<strong>oviducte</strong>.</li>
+                                </ol>
+                            </li>
+                        </ul>
+                        
+                        <p><strong>Développement de l'ovocyte pendant l'ovogenèse :</strong></p>
+                        <p>L'ovogenèse chez <em>Drosophila</em> peut être divisée en 14 stades, chacun caractérisé par des événements spécifiques :</p>
+                        <ul>
+                            <li><strong>Stades précoces (1 à 7)</strong> :
+                                <ul>
+                                    <li>Formation du cyste de 16 cellules.</li>
+                                    <li>Détermination de l'ovocyte par accumulation de facteurs cytoplasmiques spécifiques (comme les ARNm <em>oskar</em>, <em>bicoid</em>, et <em>nanos</em>).</li>
+                                    <li>Établissement de la polarité intrinsèque de l'ovocyte.</li>
+                                </ul>
+                            </li>
+                            <li><strong>Stades intermédiaires (8 à 10)</strong> :
+                                <ul>
+                                    <li>Migration du noyau de l'ovocyte vers la région antérieure-dorsale.</li>
+                                    <li>Activation de la transcription de gènes spécifiques.</li>
+                                </ul>
+                            </li>
+                            <li><strong>Stades tardifs (11 à 14)</strong> :
+                                <ul>
+                                    <li>Accumulation massive de vitellus (yolk).</li>
+                                    <li>Formation de la coquille de l'œuf.</li>
+                                    <li>Maturation finale et ovulation.</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Chapter 3 -->
+                <div class="chapter">
+                    <h3 onclick="toggleChapter('chapter3')">
+                        <span>Chapitre 3: Morphogènes Maternels</span>
+                        <span class="toggle-icon" id="toggle-icon-3">▼</span>
+                    </h3>
+                    <div class="chapter-content" id="chapter3">
+                        <p><strong>Objectifs:</strong> Comprendre l'établissement des axes corporels par les morphogènes maternels.</p>
+                        <div class="video-container">
+                            <iframe src="https://www.youtube.com/embed/kqNtG8vJZg4" allowfullscreen></iframe>
+                        </div>
+                        <h4>Contenu détaillé :</h4>
+                        <p><strong>Contrôle génétique par les morphogènes maternels - Établissement des axes corporels :</strong></p>
+                        
+                        <p><strong>Axe antéro-postérieur :</strong></p>
+                        <ul>
+                            <li><strong>Morphogène <em>bicoid</em></strong> :
+                                <ul>
+                                    <li>Localisé au <strong>pôle antérieur</strong> de l'œuf.</li>
+                                    <li>Active le gène <em>hunchback</em> (gap gene) pour délimiter les segments céphaliques.</li>
+                                </ul>
+                            </li>
+                            <li><strong>Morphogène <em>nanos</em></strong> :
+                                <ul>
+                                    <li>Localisé au <strong>pôle postérieur</strong>.</li>
+                                    <li>Inhibe <em>hunchback</em> dans les segments abdominaux.</li>
+                                </ul>
+                            </li>
+                            <li><strong>Morphogène <em>caudal</em></strong> :
+                                <ul>
+                                    <li>Distribué de manière uniforme puis activé postérieurement.</li>
+                                    <li>Active les gènes gap postérieurs comme <em>knirps</em> et <em>giant</em>.</li>
+                                </ul>
+                            </li>
+                        </ul>
+                        
+                        <p><strong>Axe dorso-ventral :</strong></p>
+                        <ul>
+                            <li><strong>Morphogène <em>dorsal</em></strong> :
+                                <ul>
+                                    <li>Activé par la voie <strong>Toll</strong> suite à l'interaction avec <em>Spätzle</em> (morphogène maternel).</li>
+                                    <li>Gradient nucléaire ventral → activateur de gènes mésodermiques (<em>twist</em>, <em>snail</em>).</li>
+                                </ul>
+                            </li>
+                            <li><strong>Rôle de <em>Gurken</em></strong> :
+                                <ul>
+                                    <li>Sécrété par l'ovocyte, active la voie <strong>EGFR</strong> dans les cellules folliculaires pour orienter la polarité dorso-ventrale.</li>
+                                </ul>
+                            </li>
+                        </ul>
+                        
+                        <p><strong>Mécanismes de régulation des morphogènes maternels :</strong></p>
+                        <ul>
+                            <li><strong>Transcription et transport</strong> :
+                                <ul>
+                                    <li>Les ARNm des morphogènes maternels sont transcrits dans les cellules nourricières et transportés vers l'ovocyte via les anneaux fusoriaux.</li>
+                                    <li>Ce transport est médié par des complexes ribonucléoprotéiques contenant des protéines motrices (comme Kinesin et Dynein).</li>
+                                </ul>
+                            </li>
+                            <li><strong>Localisation cytoplasmique</strong> :
+                                <ul>
+                                    <li>Les ARNm sont ancrés à des sites spécifiques du cortex de l'ovocyte grâce à des séquences cis-régulatrices dans leurs UTR.</li>
+                                    <li>Par exemple, l'ARNm <em>bicoid</em> est localisé à l'extrémité antérieure, tandis que <em>nanos</em> est à l'extrémité postérieure.</li>
+                                </ul>
+                            </li>
+                        </ul>
+                        
+                        <p><strong>Rétrocontrôle entre Bicoid, Hunchback, Nanos et Caudal :</strong></p>
+                        <ul>
+                            <li><strong>Activation transcriptionnelle</strong> :
+                                <ul>
+                                    <li>Bicoid active la transcription de <em>hunchback</em> dans la région antérieure.</li>
+                                </ul>
+                            </li>
+                            <li><strong>Répression translationnelle</strong> :
+                                <ul>
+                                    <li>Nanos réprime la traduction de <em>hunchback</em> dans la région postérieure.</li>
+                                </ul>
+                            </li>
+                            <li><strong>Interactions antagonistes</strong> :
+                                <ul>
+                                    <li>Bicoid et Nanos ont des effets opposés sur <em>hunchback</em>.</li>
+                                    <li>Caudal active les gènes gap postérieurs comme <em>knirps</em> et <em>giant</em>.</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Chapter 4 -->
+                <div class="chapter">
+                    <h3 onclick="toggleChapter('chapter4')">
+                        <span>Chapitre 4: Gènes de Segmentation</span>
+                        <span class="toggle-icon" id="toggle-icon-4">▼</span>
+                    </h3>
+                    <div class="chapter-content" id="chapter4">
+                        <p><strong>Objectifs:</strong> Maîtriser la cascade de régulation génétique des gènes de segmentation.</p>
+                        <div class="video-container">
+                            <iframe src="https://www.youtube.com/embed/5bZuGz9b8dE" allowfullscreen></iframe>
+                        </div>
+                        <h4>Contenu détaillé :</h4>
+                        <p><strong>Gènes de segmentation zygotiques - Cascade de régulation génétique :</strong></p>
+                        
+                        <p><strong>Gènes GAP :</strong></p>
+                        <ul>
+                            <li><strong>Fonction</strong> : Définissent des <strong>zones larges</strong> (gap) le long de l'axe antéro-postérieur.</li>
+                            <li><strong>Exemples</strong> :
+                                <ul>
+                                    <li><em>hunchback</em> : Activé par <em>bicoid</em>, exprimé en zone antérieure.</li>
+                                    <li><em>krüppel</em> : Contrôlé par <em>bicoid</em> et <em>nanos</em>, exprimé en zone centrale.</li>
+                                    <li><em>giant</em> : Réprimé par <em>bicoid</em> et activé par <em>nanos</em>.</li>
+                                    <li><em>knirps</em> : Activé par <em>caudal</em> et réprimé par <em>bicoid</em>.</li>
+                                </ul>
+                            </li>
+                            <li><strong>Mécanismes moléculaires</strong> :
+                                <ul>
+                                    <li>Les gènes gap divisent l'embryon en grandes régions correspondant à des segments futurs.</li>
+                                    <li>Leur expression se chevauche partiellement, mais des mécanismes de répression mutuelle créent des frontières nettes entre les domaines d'expression.</li>
+                                </ul>
+                            </li>
+                        </ul>
+                        
+                        <p><strong>Gènes Pair-Rule :</strong></p>
+                        <ul>
+                            <li><strong>Fonction</strong> : Génèrent des <strong>bandes alternées</strong> (every 7th segment) via des motifs répétitifs.</li>
+                            <li><strong>Exemples</strong> :
+                                <ul>
+                                    <li><em>even-skipped</em> (<em>eve</em>) :
+                                        <ul>
+                                            <li>Exprimé en 7 bandes précises le long de l'axe A-P.</li>
+                                            <li>Chaque bande est définie par une combinaison unique de gènes gap :
+                                                <ul>
+                                                    <li>Bande 2 : Activée par Bicoid et Hunchback, réprimée par Giant.</li>
+                                                    <li>Bande 3 : Activée par Hunchback, réprimée par Krüppel.</li>
+                                                    <li>Bandes postérieures : Activées par Caudal, réprimées par Knirps.</li>
+                                                </ul>
+                                            </li>
+                                            <li>Eve agit comme un répresseur transcriptionnel puissant.</li>
+                                        </ul>
+                                    </li>
+                                    <li><em>fushi tarazu</em> (<em>ftz</em>) :
+                                        <ul>
+                                            <li>Exprimé en bandes alternées par rapport à Eve.</li>
+                                            <li>Activation : Ftz est activé dans des bandes alternées par rapport à eve, formant un motif complémentaire.</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li><strong>Gènes pair-rule secondaires</strong> :
+                                <ul>
+                                    <li><em>runt</em>, <em>hairy</em>, <em>odd-skipped</em> affinent les motifs des gènes primaires.</li>
+                                    <li>Par exemple, Runt peut réprimer <em>even-skipped</em> dans ses propres bandes.</li>
+                                </ul>
+                            </li>
+                        </ul>
+                        
+                        <p><strong>Gènes de Polarité Segmentaire :</strong></p>
+                        <ul>
+                            <li><strong>Fonction</strong> : Définissent les <strong>frontières internes</strong> des segments.</li>
+                            <li><strong>Exemples</strong> :
+                                <ul>
+                                    <li><em>engrailed</em> (<em>en</em>) :
+                                        <ul>
+                                            <li>Exprimé dans la partie postérieure de chaque segment (parasegment).</li>
+                                            <li>Engrailed définit la limite postérieure de chaque parasegment en activant des gènes cibles spécifiques.</li>
+                                        </ul>
+                                    </li>
+                                    <li><em>wingless</em> (<em>wg</em>) :
+                                        <ul>
+                                            <li>Activé par certains gènes pair-rule, notamment <em>Odd-skipped</em> et <em>Hairy</em>, dans des régions spécifiques.</li>
+                                            <li>Wingless agit comme un signal paracrine qui maintient la polarité des segments.</li>
+                                        </ul>
+                                    </li>
+                                    <li><em>hedgehog</em> (<em>hh</em>) :
+                                        <ul>
+                                            <li>Exprimé dans les cellules postérieures de chaque segment sous le contrôle d'<em>engrailed</em>.</li>
+                                            <li>Hedgehog diffuse vers les cellules antérieures et active <em>ci</em> (Cubitus interruptus).</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                        
+                        <p><strong>Interaction et rétrocontrôle entre Engrailed, Wingless et Hedgehog :</strong></p>
+                        <ul>
+                            <li><strong>Mécanisme</strong> :
+                                <ul>
+                                    <li>Engrailed active <em>hedgehog</em> dans les cellules postérieures.</li>
+                                    <li>Hedgehog diffuse vers les cellules antérieures et active <em>wingless</em>.</li>
+                                    <li>Wingless diffuse vers les cellules postérieures et maintient l'expression d'<em>engrailed</em>.</li>
+                                </ul>
+                            </li>
+                            <li><strong>Boucles de rétroaction</strong> :
+                                <ul>
+                                    <li>Les boucles de rétroaction positive et les mécanismes antagonistes maintiennent des frontières nettes entre les compartiments.</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Chapter 5 -->
+                <div class="chapter">
+                    <h3 onclick="toggleChapter('chapter5')">
+                        <span>Chapitre 5: Gènes Homeotiques</span>
+                        <span class="toggle-icon" id="toggle-icon-5">▼</span>
+                    </h3>
+                    <div class="chapter-content" id="chapter5">
+                        <p><strong>Objectifs:</strong> Comprendre le rôle des gènes Hox dans la spécification segmentaire.</p>
+                        <div class="video-container">
+                            <iframe src="https://www.youtube.com/embed/aBcDeFgHiJk" allowfullscreen></iframe>
+                        </div>
+                        <h4>Contenu détaillé :</h4>
+                        <p><strong>Gènes Homeotiques :</strong></p>
+                        
+                        <p><strong>Rôle des Hox genes :</strong></p>
+                        <ul>
+                            <li><strong>Définition</strong> : Gènes codant pour des <strong>facteurs de transcription</strong> qui déterminent l'<strong>identité des segments</strong>.</li>
+                            <li><strong>Exemples chez <em>Drosophila</em></strong> :
+                                <ul>
+                                    <li><strong>Complexe Antennapedia (ANT-C)</strong> :
+                                        <ul>
+                                            <li><em>Labial</em> (<em>lab</em>) : Contrôle les structures céphaliques antérieures.</li>
+                                            <li><em>Proboscipedia</em> (<em>pb</em>) : Détermine l'identité des appendices buccaux.</li>
+                                            <li><em>Deformed</em> (<em>Dfd</em>) : Spécifie les segments céphaliques médians (ex. mandibules).</li>
+                                            <li><em>Sex combs reduced</em> (<em>Scr</em>) : Contrôle l'identité du premier segment thoracique (T1).</li>
+                                            <li><em>Antennapedia</em> (<em>Antp</em>) : Confère l'identité thoracique (ex. pattes).</li>
+                                        </ul>
+                                    </li>
+                                    <li><strong>Bithorax complex (BX-C)</strong> :
+                                        <ul>
+                                            <li><em>Ultrabithorax</em> (<em>Ubx</em>) : Confère l'identité du segment T3 et des segments abdominaux.</li>
+                                            <li><em>Abdominal-A</em> (<em>Abd-A</em>) : Contrôle les segments abdominaux médians.</li>
+                                            <li><em>Abdominal-B</em> (<em>Abd-B</em>) : Contrôle les segments abdominaux postérieurs.</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                        
+                        <p><strong>Mécanismes de régulation :</strong></p>
+                        <ul>
+                            <li><strong>Colinéarité</strong> :
+                                <ul>
+                                    <li>Ordre linéaire des gènes dans le génome correspond à leur ordre d'expression le long de l'axe antéro-postérieur.</li>
+                                </ul>
+                            </li>
+                            <li><strong>Répression</strong> :
+                                <ul>
+                                    <li>Les gènes Hox sont réprimés dans les segments non ciblés par des protéines comme <strong>PcG</strong> (Polycomb group).</li>
+                                </ul>
+                            </li>
+                            <li><strong>Activation</strong> :
+                                <ul>
+                                    <li>Mécanismes épigénétiques : Les complexes Trithorax (TrxG) maintiennent l'expression active des gènes Hox dans les segments appropriés.</li>
+                                </ul>
+                            </li>
+                        </ul>
+                        
+                        <p><strong>Phénotypes de mutation :</strong></p>
+                        <ul>
+                            <li><em>Ubx</em> muté → duplication de pattes thoraciques (effet bithorax).</li>
+                            <li><em>Antp</em> muté → transformation de l'antenne en pattes.</li>
+                            <li>Mutations des gènes Hox spécifient l'identité des segments en activant ou réprimant des batteries de gènes cibles.</li>
+                        </ul>
+                        
+                        <p><strong>Importance évolutionnaire :</strong></p>
+                        <ul>
+                            <li>Les Hox genes sont conservés chez tous les eumétazoaires.</li>
+                            <li>Variations dans leurs régions régulatrices expliquent les différences morphologiques entre espèces (ex. nombre de segments).</li>
+                        </ul>
+                        
+                        <p><strong>Régulation du développement par les gènes Hox et rétrocontrôle :</strong></p>
+                        <ul>
+                            <li><strong>Activation séquentielle</strong> :
+                                <ul>
+                                    <li>Les gènes situés en amont sont activés plus tôt pendant le développement.</li>
+                                </ul>
+                            </li>
+                            <li><strong>Régulation par les éléments cis-régulateurs</strong> :
+                                <ul>
+                                    <li>Chaque gène du complexe est contrôlé par des éléments cis-régulateurs spécifiques (enhancers).</li>
+                                    <li>Ces enhancers répondent à des signaux provenant des gradients de morphogènes comme Bicoid, Hunchback, Krüppel, et Caudal.</li>
+                                </ul>
+                            </li>
+                            <li><strong>Répression par les complexes Polycomb et Trithorax</strong> :
+                                <ul>
+                                    <li>Complexes PcG répriment les gènes Hox dans les segments où ils ne doivent pas être exprimés.</li>
+                                    <li>Complexes TrxG maintiennent l'expression active des gènes Hox dans les segments appropriés.</li>
+                                </ul>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>
 
-            <!-- Episode 2 -->
-            <div class="episode-card" data-video="2">
-                <div class="episode-thumbnail">
-                    <i class="fas fa-egg"></i>
+            <!-- QCM Tab -->
+            <div class="tab-content" id="qcmTab" style="display: none;">
+                <h2>📝 Questionnaire de Compréhension</h2>
+                
+                <div class="qcm-section">
+                    <div class="question">
+                        <h4>1. Quel morphogène contrôle la polarité antéro-postérieure ?</h4>
+                        <div class="options">
+                            <div class="option" onclick="selectOption(this, 'A')">A) Dorsal</div>
+                            <div class="option" onclick="selectOption(this, 'B')">B) Bicoid</div>
+                            <div class="option" onclick="selectOption(this, 'C')">C) Nanos</div>
+                            <div class="option" onclick="selectOption(this, 'D')">D) Gurken</div>
+                            <div class="option" onclick="selectOption(this, 'E')">E) Spätzle</div>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <h4>2. Quel gène est un exemple de pair-rule gene ?</h4>
+                        <div class="options">
+                            <div class="option" onclick="selectOption(this, 'A')">A) hunchback</div>
+                            <div class="option" onclick="selectOption(this, 'B')">B) even-skipped</div>
+                            <div class="option" onclick="selectOption(this, 'C')">C) engrailed</div>
+                            <div class="option" onclick="selectOption(this, 'D')">D) Ultrabithorax</div>
+                            <div class="option" onclick="selectOption(this, 'E')">E) caudal</div>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <h4>3. Où se déroule le développement de l'ovocyte ?</h4>
+                        <div class="options">
+                            <div class="option" onclick="selectOption(this, 'A')">A) Dans les testicules</div>
+                            <div class="option" onclick="selectOption(this, 'B')">B) Dans les ovarioles</div>
+                            <div class="option" onclick="selectOption(this, 'C')">C) Dans le corps gras</div>
+                            <div class="option" onclick="selectOption(this, 'D')">D) Dans l'oviducte</div>
+                            <div class="option" onclick="selectOption(this, 'E')">E) Dans la chambre ovarienne</div>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <h4>4. Quel est le rôle des gènes Hox ?</h4>
+                        <div class="options">
+                            <div class="option" onclick="selectOption(this, 'A')">A) Définir l'identité des segments</div>
+                            <div class="option" onclick="selectOption(this, 'B')">B) Contrôler la segmentation primaire</div>
+                            <div class="option" onclick="selectOption(this, 'C')">C) Réguler la fécondation</div>
+                            <div class="option" onclick="selectOption(this, 'D')">D) Activer la synthèse de vitellus</div>
+                            <div class="option" onclick="selectOption(this, 'E')">E) Inhiber l'apoptose</div>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <h4>5. Quel processus est régulé par la voie Hedgehog ?</h4>
+                        <div class="options">
+                            <div class="option" onclick="selectOption(this, 'A')">A) Communication entre cellules segmentaires</div>
+                            <div class="option" onclick="selectOption(this, 'B')">B) Formation des axes corporels</div>
+                            <div class="option" onclick="selectOption(this, 'C')">C) Dépôt de réserves nutritives</div>
+                            <div class="option" onclick="selectOption(this, 'D')">D) Activation des gènes maternels</div>
+                            <div class="option" onclick="selectOption(this, 'E')">E) Synthèse de la membrane vitelline</div>
+                        </div>
+                    </div>
+
+                    <button class="btn" onclick="submitQCM()" style="margin-top: 20px;">Soumettre les réponses</button>
+                    <div id="qcmResult" style="margin-top: 20px; text-align: center;"></div>
                 </div>
-                <div class="episode-content">
-                    <div class="episode-number">2</div>
-                    <h3 class="episode-title">Oogenèse et formation de l'œuf</h3>
-                    <p class="episode-description">Explorez le processus de formation de l'œuf dans l'ovaire de la femelle et l'établissement des axes.</p>
-                    <div class="episode-meta">
-                        <span><i class="far fa-clock"></i> 15 min</span>
-                        <span><i class="fas fa-graduation-cap"></i> Niveau intermédiaire</span>
+            </div>
+
+            <!-- Étudiants Tab -->
+            <div class="tab-content" id="etudiantsTab" style="display: none;">
+                <h2>👥 Liste des Étudiants - Année Universitaire 2024-2025</h2>
+                <div id="studentsContent">
+                    <div class="loading">
+                        <div class="loading-spinner"></div>
+                        <p>Chargement des données étudiants...</p>
                     </div>
                 </div>
             </div>
 
-            <!-- Episode 3 -->
-            <div class="episode-card" data-video="3">
-                <div class="episode-thumbnail">
-                    <i class="fas fa-seedling"></i>
+            <!-- Admin Tab -->
+            <div class="tab-content" id="adminTabContent" style="display: none;">
+                <h2>⚙️ Panneau Administratif</h2>
+                <div class="admin-panel">
+                    <h3>Modifier les fichiers de cours</h3>
+                    <p>Accès réservé aux enseignants pour la mise à jour des documents.</p>
+                    <button class="btn" style="background: #28a745;">Uploader des fichiers</button>
                 </div>
-                <div class="episode-content">
-                    <div class="episode-number">3</div>
-                    <h3 class="episode-title">Fécondation et clivage</h3>
-                    <p class="episode-description">Comprenez le processus de fécondation et les premières divisions nucléaires rapides.</p>
-                    <div class="episode-meta">
-                        <span><i class="far fa-clock"></i> 14 min</span>
-                        <span><i class="fas fa-graduation-cap"></i> Niveau intermédiaire</span>
-                    </div>
+                <div class="admin-panel">
+                    <h3>Gérer les évaluations</h3>
+                    <p>Création et modification des TD et examens.</p>
+                    <button class="btn" style="background: #ffc107; color: #333;">Créer un nouveau TD</button>
+                    <button class="btn" style="background: #dc3545; margin-top: 10px;">Créer un examen</button>
                 </div>
-            </div>
-
-            <!-- Episode 4 -->
-            <div class="episode-card" data-video="4">
-                <div class="episode-thumbnail">
-                    <i class="fas fa-ruler-combined"></i>
-                </div>
-                <div class="episode-content">
-                    <div class="episode-number">4</div>
-                    <h3 class="episode-title">Établissement des axes du corps</h3>
-                    <p class="episode-description">Découvrez comment les gradients moléculaires établissent les axes antérieur-postérieur et dorsal-ventral.</p>
-                    <div class="episode-meta">
-                        <span><i class="far fa-clock"></i> 18 min</span>
-                        <span><i class="fas fa-graduation-cap"></i> Niveau avancé</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Episode 5 -->
-            <div class="episode-card" data-video="5">
-                <div class="episode-thumbnail">
-                    <i class="fas fa-border-style"></i>
-                </div>
-                <div class="episode-content">
-                    <div class="episode-number">5</div>
-                    <h3 class="episode-title">Gènes lacunes et segmentation</h3>
-                    <p class="episode-description">Apprenez comment les gènes gap divisent l'embryon en régions larges et préparent la segmentation.</p>
-                    <div class="episode-meta">
-                        <span><i class="far fa-clock"></i> 16 min</span>
-                        <span><i class="fas fa-graduation-cap"></i> Niveau avancé</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Episode 6 -->
-            <div class="episode-card" data-video="6">
-                <div class="episode-thumbnail">
-                    <i class="fas fa-puzzle-piece"></i>
-                </div>
-                <div class="episode-content">
-                    <div class="episode-number">6</div>
-                    <h3 class="episode-title">Gènes de la règle des paires</h3>
-                    <p class="episode-description">Explorez comment les gènes pair-rule affinent le modèle de segmentation.</p>
-                    <div class="episode-meta">
-                        <span><i class="far fa-clock"></i> 17 min</span>
-                        <span><i class="fas fa-graduation-cap"></i> Niveau expert</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Episode 7 -->
-            <div class="episode-card" data-video="7">
-                <div class="episode-thumbnail">
-                    <i class="fas fa-divide"></i>
-                </div>
-                <div class="episode-content">
-                    <div class="episode-number">7</div>
-                    <h3 class="episode-title">Gènes de polarité des segments</h3>
-                    <p class="episode-description">Comprenez comment les segments sont divisés en compartiments antérieur et postérieur.</p>
-                    <div class="episode-meta">
-                        <span><i class="far fa-clock"></i> 15 min</span>
-                        <span><i class="fas fa-graduation-cap"></i> Niveau expert</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Episode 8 -->
-            <div class="episode-card" data-video="8">
-                <div class="episode-thumbnail">
-                    <i class="fas fa-dna"></i>
-                </div>
-                <div class="episode-content">
-                    <div class="episode-number">8</div>
-                    <h3 class="episode-title">Gènes homéotiques</h3>
-                    <p class="episode-description">Découvrez les gènes maîtres qui déterminent l'identité des segments du corps.</p>
-                    <div class="episode-meta">
-                        <span><i class="far fa-clock"></i> 20 min</span>
-                        <span><i class="fas fa-graduation-cap"></i> Niveau expert</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Episode 9 -->
-            <div class="episode-card" data-video="9">
-                <div class="episode-thumbnail">
-                    <i class="fas fa-layer-group"></i>
-                </div>
-                <div class="episode-content">
-                    <div class="episode-number">9</div>
-                    <h3 class="episode-title">Gastrulation</h3>
-                    <p class="episode-description">Explorez la formation des couches germinales et le processus de gastrulation.</p>
-                    <div class="episode-meta">
-                        <span><i class="far fa-clock"></i> 18 min</span>
-                        <span><i class="fas fa-graduation-cap"></i> Niveau avancé</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Episode 10 -->
-            <div class="episode-card" data-video="10">
-                <div class="episode-thumbnail">
-                    <i class="fas fa-brain"></i>
-                </div>
-                <div class="episode-content">
-                    <div class="episode-number">10</div>
-                    <h3 class="episode-title">Neurogenèse</h3>
-                    <p class="episode-description">Comprenez le développement du système nerveux et la formation des neuroblastes.</p>
-                    <div class="episode-meta">
-                        <span><i class="far fa-clock"></i> 19 min</span>
-                        <span><i class="fas fa-graduation-cap"></i> Niveau expert</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Episode 11 -->
-            <div class="episode-card" data-video="11">
-                <div class="episode-thumbnail">
-                    <i class="fas fa-heart"></i>
-                </div>
-                <div class="episode-content">
-                    <div class="episode-number">11</div>
-                    <h3 class="episode-title">Développement des organes</h3>
-                    <p class="episode-description">Découvrez comment les systèmes organiques se forment à partir des couches germinales.</p>
-                    <div class="episode-meta">
-                        <span><i class="far fa-clock"></i> 16 min</span>
-                        <span><i class="fas fa-graduation-cap"></i> Niveau avancé</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Episode 12 -->
-            <div class="episode-card" data-video="12">
-                <div class="episode-thumbnail">
-                    <i class="fas fa-shapes"></i>
-                </div>
-                <div class="episode-content">
-                    <div class="episode-number">12</div>
-                    <h3 class="episode-title">Morphogenèse</h3>
-                    <p class="episode-description">Explorez les mouvements cellulaires coordonnés qui façonnent l'embryon.</p>
-                    <div class="episode-meta">
-                        <span><i class="far fa-clock"></i> 17 min</span>
-                        <span><i class="fas fa-graduation-cap"></i> Niveau expert</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Episode 13 -->
-            <div class="episode-card" data-video="13">
-                <div class="episode-thumbnail">
-                    <i class="fas fa-project-diagram"></i>
-                </div>
-                <div class="episode-content">
-                    <div class="episode-number">13</div>
-                    <h3 class="episode-title">Détermination cellulaire</h3>
-                    <p class="episode-description">Comprenez comment les cellules reçoivent des informations positionnelles.</p>
-                    <div class="episode-meta">
-                        <span><i class="far fa-clock"></i> 21 min</span>
-                        <span><i class="fas fa-graduation-cap"></i> Niveau expert</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Episode 14 -->
-            <div class="episode-card" data-video="14">
-                <div class="episode-thumbnail">
-                    <i class="fas fa-bug"></i>
-                </div>
-                <div class="episode-content">
-                    <div class="episode-number">14</div>
-                    <h3 class="episode-title">Développement larvaire</h3>
-                    <p class="episode-description">Découvrez ce qui se passe après l'embryogenèse et la métamorphose.</p>
-                    <div class="episode-meta">
-                        <span><i class="far fa-clock"></i> 15 min</span>
-                        <span><i class="fas fa-graduation-cap"></i> Niveau intermédiaire</span>
-                    </div>
+                <div class="admin-panel">
+                    <h3>Gérer les étudiants</h3>
+                    <p>Ajout, modification ou suppression d'étudiants.</p>
+                    <button class="btn" style="background: #17a2b8;">Ajouter un étudiant</button>
                 </div>
             </div>
         </div>
     </div>
-
-    <div class="container">
-        <h2 class="section-title" id="features">Fonctionnalités Éducatives</h2>
-        <div class="features">
-            <div class="feature-card">
-                <div class="feature-icon">
-                    <i class="fas fa-video"></i>
-                </div>
-                <h3 class="feature-title">Contenu Vidéo de Qualité</h3>
-                <p class="feature-description">Animations haute définition et explications claires pour une compréhension optimale.</p>
-            </div>
-            
-            <div class="feature-card">
-                <div class="feature-icon">
-                    <i class="fas fa-book-open"></i>
-                </div>
-                <h3 class="feature-title">Ressources Complémentaires</h3>
-                <p class="feature-description">Documents PDF, quiz et exercices pour approfondir vos connaissances.</p>
-            </div>
-            
-            <div class="feature-card">
-                <div class="feature-icon">
-                    <i class="fas fa-graduation-cap"></i>
-                </div>
-                <h3 class="feature-title">Adapté à tous les niveaux</h3>
-                <p class="feature-description">Contenu structuré pour débutants et experts en biologie du développement.</p>
-            </div>
-            
-            <div class="feature-card">
-                <div class="feature-icon">
-                    <i class="fas fa-mobile-alt"></i>
-                </div>
-                <h3 class="feature-title">Accès Multi-plateformes</h3>
-                <p class="feature-description">Regardez sur ordinateur, tablette ou smartphone selon votre convenance.</p>
-            </div>
-        </div>
-    </div>
-
-    <footer>
-        <div class="footer-content">
-            <div class="footer-column">
-                <h3>DrosophilaDev</h3>
-                <p>Une plateforme éducative dédiée à l'enseignement du développement embryonnaire de la drosophile.</p>
-                <div class="social-links">
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-youtube"></i></a>
-                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                </div>
-            </div>
-            
-            <div class="footer-column">
-                <h3>Cours</h3>
-                <ul>
-                    <li><a href="#">Introduction</a></li>
-                    <li><a href="#">Oogenèse</a></li>
-                    <li><a href="#">Fécondation</a></li>
-                    <li><a href="#">Segmentation</a></li>
-                    <li><a href="#">Gastrulation</a></li>
-                </ul>
-            </div>
-            
-            <div class="footer-column">
-                <h3>Ressources</h3>
-                <ul>
-                    <li><a href="#">Documents PDF</a></li>
-                    <li><a href="#">Quiz interactifs</a></li>
-                    <li><a href="#">Glossaire</a></li>
-                    <li><a href="#">Liens utiles</a></li>
-                    <li><a href="#">Bibliographie</a></li>
-                </ul>
-            </div>
-            
-            <div class="footer-column">
-                <h3>Contact</h3>
-                <ul>
-                    <li><i class="fas fa-envelope"></i> contact@drosophiladev.edu</li>
-                    <li><i class="fas fa-phone"></i> +33 1 23 45 67 89</li>
-                    <li><i class="fas fa-map-marker-alt"></i> Université Paris, France</li>
-                </ul>
-            </div>
-        </div>
-        
-        <div class="copyright">
-            <p>&copy; 2023 DrosophilaDev. Tous droits réservés. | Plateforme éducative pour la biologie du développement</p>
-        </div>
-    </footer>
 
     <script>
-        // Video player functionality
-        document.addEventListener('DOMContentLoaded', function() {
-            const episodeCards = document.querySelectorAll('.episode-card');
-            const videoTitle = document.getElementById('current-video-title');
-            const videoDescription = document.getElementById('current-video-description');
-            const videoPlayer = document.querySelector('video');
-            
-            // Episode data
-            const episodes = [
-                {
-                    id: 1,
-                    title: "Introduction au développement de la drosophile",
-                    description: "Bienvenue dans notre voyage à travers le développement de l'embryon de drosophile. La drosophile est la pierre angulaire de la recherche en biologie du développement depuis plus d'un siècle. Dans cette série, nous allons explorer comment un simple œuf fécondé se transforme en un organisme complexe grâce à des processus génétiques et cellulaires orchestrés avec précision."
-                },
-                {
-                    id: 2,
-                    title: "Oogenèse et formation de l'œuf",
-                    description: "Le développement de la drosophile ne commence pas avec la fécondation, mais avec l'ovogenèse - la formation de l'œuf dans l'ovaire de la mère. Ce processus établit les axes fondamentaux qui guideront tout le développement ultérieur."
-                },
-                {
-                    id: 3,
-                    title: "Fécondation et début du clivage",
-                    description: "La fécondation a lieu peu après la ponte de l'œuf. Contrairement à de nombreux organismes, la drosophile subit des divisions nucléaires rapides sans division cellulaire, créant un blastoderme syncytial où des milliers de noyaux partagent le même cytoplasme."
-                },
-                {
-                    id: 4,
-                    title: "Établissement des axes du corps",
-                    description: "Le plan corporel fondamental de l'embryon de drosophile est établi par des gènes à effet maternel qui créent des gradients de concentration le long de trois axes : antérieur-postérieur, dorsal-ventral et régions terminales."
-                },
-                {
-                    id: 5,
-                    title: "Gènes lacunes et segmentation",
-                    description: "Les gènes Gap sont les premiers gènes zygotiques exprimés, divisant l'embryon en larges régions. Ces facteurs de transcription préparent le terrain pour la segmentation précise qui suit."
-                },
-                {
-                    id: 6,
-                    title: "Les gènes de la règle des paires",
-                    description: "Les gènes de la règle des paires affinent le modèle de segmentation, établissant les sept parasegments qui donneront naissance aux segments du corps adulte. Ces gènes sont exprimés en alternance, créant ainsi la base de l'identité des segments."
-                },
-                {
-                    id: 7,
-                    title: "Les gènes de polarité des segments",
-                    description: "Les gènes de polarité des segments établissent les compartiments antérieur et postérieur de chaque segment. Ces gènes sont essentiels pour maintenir les limites des segments et organiser le destin des cellules à l'intérieur des segments."
-                },
-                {
-                    id: 8,
-                    title: "Les gènes homéotiques et l'identité des segments du corps",
-                    description: "Les gènes homéotiques déterminent les structures qui se développent sur chaque segment. Ces régulateurs principaux utilisent des domaines homéobox conservés pour contrôler l'expression de centaines de gènes cibles, transformant un segment en un autre."
-                },
-                {
-                    id: 9,
-                    title: "Formation de la couche germinale et gastrulation",
-                    description: "La gastrulation transforme le blastoderme à une couche en un embryon à trois couches avec des couches germinales distinctes : l'ectoderme, le mésoderme et l'endoderme. Ce processus implique des mouvements cellulaires coordonnés et des changements de forme."
-                },
-                {
-                    id: 10,
-                    title: "La neurogenèse et le système nerveux",
-                    description: "Le système nerveux de la drosophile se développe selon un processus hautement stéréotypé de formation et de différenciation des cellules précurseurs neurales. Chaque neuroblaste donne naissance à une lignée spécifique de neurones dont le destin est défini."
-                },
-                {
-                    id: 11,
-                    title: "Développement des systèmes organiques",
-                    description: "Au fur et à mesure de la segmentation et de la formation de la couche germinale, les systèmes d'organes commencent à émerger. Le cœur, l'intestin, le système trachéal et d'autres organes se forment grâce à des interactions coordonnées entre différents types de tissus."
-                },
-                {
-                    id: 12,
-                    title: "Morphogenèse et interactions tissulaires",
-                    description: "La morphogenèse implique le mouvement coordonné et les changements de forme des tissus pour créer un plan corporel tridimensionnel. L'adhésion cellulaire, les réarrangements du cytosquelette et les interactions tissu-tissu sont à l'origine de ces processus complexes."
-                },
-                {
-                    id: 13,
-                    title: "Formation des motifs et détermination du devenir des cellules",
-                    description: "Le plan corporel final émerge grâce à l'intégration de multiples voies de signalisation et de réseaux transcriptionnels. Chaque cellule reçoit des informations sur sa position qui déterminent son destin et sa fonction."
-                },
-                {
-                    id: 14,
-                    title: "Le développement larvaire et au-delà",
-                    description: "Après l'embryogenèse, la drosophile entre dans les stades larvaires où les organes continuent de croître et de se différencier. Les programmes génétiques établis pendant l'embryogenèse guident ce développement post-embryonnaire."
-                }
-            ];
-            
-            // Add click event to episode cards
-            episodeCards.forEach(card => {
-                card.addEventListener('click', function() {
-                    const episodeId = parseInt(this.getAttribute('data-video'));
-                    const episode = episodes.find(e => e.id === episodeId);
+        // Variables globales
+        let currentUser = null;
+        let isAdmin = false;
+        let authToken = null;
+
+        // Données des étudiants (pour simulation sans backend)
+        const studentsData = [
+            { name: "Ali Benali", presence: "Présent", cc: 16, ef: 14, moyenne: 15 },
+            { name: "Camille Dubois", presence: "Présent", cc: 18, ef: 17, moyenne: 17.5 },
+            { name: "David Moreau", presence: "Absent", cc: null, ef: null, moyenne: null },
+            { name: "Emma Laurent", presence: "Présent", cc: 15, ef: 16, moyenne: 15.5 },
+            { name: "François Martin", presence: "Présent", cc: 14, ef: 13, moyenne: 13.5 },
+            { name: "Isabelle Rousseau", presence: "Présent", cc: 17, ef: 18, moyenne: 17.5 },
+            { name: "Julien Petit", presence: "Absent", cc: null, ef: null, moyenne: null },
+            { name: "Laura Bernard", presence: "Présent", cc: 19, ef: 18, moyenne: 18.5 },
+            { name: "Marc Dubois", presence: "Présent", cc: 13, ef: 14, moyenne: 13.5 },
+            { name: "Nathalie Simon", presence: "Présent", cc: 16, ef: 15, moyenne: 15.5 }
+        ];
+
+        // Données de connexion
+        const validUsers = {
+            "Ali Benali": { password: "L3droso2025", role: "student" },
+            "Camille Dubois": { password: "L3droso2025", role: "student" },
+            "David Moreau": { password: "L3droso2025", role: "student" },
+            "Emma Laurent": { password: "L3droso2025", role: "student" },
+            "François Martin": { password: "L3droso2025", role: "student" },
+            "Isabelle Rousseau": { password: "L3droso2025", role: "student" },
+            "Julien Petit": { password: "L3droso2025", role: "student" },
+            "Laura Bernard": { password: "L3droso2025", role: "student" },
+            "Marc Dubois": { password: "L3droso2025", role: "student" },
+            "Nathalie Simon": { password: "L3droso2025", role: "student" },
+            "Administrateur": { password: "DrososegCTRLL3", role: "admin" }
+        };
+
+        // Fonction de login
+        function login() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const messageDiv = document.getElementById('loginMessage');
+            const loginBtn = document.getElementById('loginBtn');
+
+            // Validation des champs
+            if (!username || !password) {
+                messageDiv.innerHTML = '<span class="error">Veuillez remplir tous les champs</span>';
+                return;
+            }
+
+            // Désactiver le bouton pendant le chargement
+            loginBtn.disabled = true;
+            loginBtn.innerHTML = 'Connexion...';
+
+            // Vérifier les identifiants
+            setTimeout(() => {
+                const user = validUsers[username];
+                
+                if (user && user.password === password) {
+                    // Stocker les informations de l'utilisateur
+                    currentUser = {
+                        username: username,
+                        role: user.role
+                    };
+                    isAdmin = user.role === 'admin';
                     
-                    if (episode) {
-                        videoTitle.textContent = episode.title;
-                        videoDescription.textContent = episode.description;
-                        
-                        // Scroll to video player
-                        document.querySelector('.video-player').scrollIntoView({ 
-                            behavior: 'smooth' 
-                        });
-                        
-                        // Add visual feedback
-                        episodeCards.forEach(c => c.style.opacity = '0.7');
-                        this.style.opacity = '1';
+                    // Stocker dans localStorage pour persistance
+                    localStorage.setItem('currentUser', JSON.stringify(currentUser));
+                    
+                    // Afficher le contenu principal
+                    showContent();
+                    
+                    // Afficher l'onglet admin si l'utilisateur est administrateur
+                    if (isAdmin) {
+                        document.getElementById('adminTab').style.display = 'block';
                     }
-                });
+                    
+                    messageDiv.innerHTML = '<span class="success">Connexion réussie! Bienvenue ' + username + '</span>';
+                } else {
+                    messageDiv.innerHTML = '<span class="error">Nom d\'utilisateur ou mot de passe incorrect</span>';
+                }
+                
+                // Réactiver le bouton
+                loginBtn.disabled = false;
+                loginBtn.innerHTML = 'Se connecter';
+            }, 500);
+        }
+
+        // Fonction de déconnexion
+        function logout() {
+            // Effacer les données de session
+            currentUser = null;
+            isAdmin = false;
+            
+            // Effacer le localStorage
+            localStorage.removeItem('currentUser');
+            
+            // Afficher l'écran de connexion
+            document.getElementById('loginSection').style.display = 'block';
+            document.getElementById('contentSection').style.display = 'none';
+            
+            // Réinitialiser les champs
+            document.getElementById('username').value = '';
+            document.getElementById('password').value = '';
+            document.getElementById('loginMessage').innerHTML = '';
+            
+            // Cacher l'onglet admin
+            document.getElementById('adminTab').style.display = 'none';
+        }
+
+        // Afficher le contenu principal
+        function showContent() {
+            document.getElementById('loginSection').style.display = 'none';
+            document.getElementById('contentSection').style.display = 'block';
+        }
+
+        // Navigation par onglets
+        function showTab(tabName) {
+            // Cacher tous les onglets
+            const coursTab = document.getElementById('coursTab');
+            const qcmTab = document.getElementById('qcmTab');
+            const etudiantsTab = document.getElementById('etudiantsTab');
+            const adminTabContent = document.getElementById('adminTabContent');
+            
+            if (coursTab) coursTab.style.display = 'none';
+            if (qcmTab) qcmTab.style.display = 'none';
+            if (etudiantsTab) etudiantsTab.style.display = 'none';
+            if (adminTabContent) adminTabContent.style.display = 'none';
+            
+            // Désactiver tous les boutons
+            const tabButtons = document.querySelectorAll('.tab-btn');
+            tabButtons.forEach(btn => btn.classList.remove('active'));
+            
+            // Afficher l'onglet sélectionné
+            switch(tabName) {
+                case 'cours':
+                    if (coursTab) {
+                        coursTab.style.display = 'block';
+                        event.target.classList.add('active');
+                    }
+                    break;
+                case 'qcm':
+                    if (qcmTab) {
+                        qcmTab.style.display = 'block';
+                        event.target.classList.add('active');
+                    }
+                    break;
+                case 'etudiants':
+                    if (etudiantsTab) {
+                        etudiantsTab.style.display = 'block';
+                        event.target.classList.add('active');
+                        // Charger les données des étudiants
+                        loadStudents();
+                    }
+                    break;
+                case 'admin':
+                    if (isAdmin && adminTabContent) {
+                        adminTabContent.style.display = 'block';
+                        event.target.classList.add('active');
+                    }
+                    break;
+            }
+        }
+
+        // Toggle chapters
+        function toggleChapter(chapterId) {
+            const chapter = document.getElementById(chapterId);
+            const icon = document.getElementById('toggle-icon-' + chapterId.replace('chapter', ''));
+            
+            if (chapter && icon) {
+                chapter.classList.toggle('active');
+                icon.classList.toggle('rotated');
+            }
+        }
+
+        // Gestion des QCM
+        function selectOption(element, value) {
+            // Désélectionner toutes les options de cette question
+            const options = element.parentElement.querySelectorAll('.option');
+            options.forEach(opt => opt.classList.remove('selected'));
+            
+            // Sélectionner l'option cliquée
+            element.classList.add('selected');
+            
+            // Stocker la réponse
+            const question = element.parentElement.parentElement;
+            if (question) {
+                question.dataset.selected = value;
+            }
+        }
+
+        // Soumission du QCM
+        function submitQCM() {
+            const questions = document.querySelectorAll('.question');
+            let score = 0;
+            const total = questions.length;
+            
+            // Réponses correctes
+            const correctAnswers = ['B', 'B', 'B', 'A', 'A'];
+            
+            questions.forEach((question, index) => {
+                const selected = question.dataset.selected;
+                if (selected === correctAnswers[index]) {
+                    score++;
+                }
             });
             
-            // Initialize first episode as selected
-            if (episodeCards.length > 0) {
-                episodeCards[0].style.opacity = '1';
+            const percentage = Math.round((score / total) * 100);
+            const resultDiv = document.getElementById('qcmResult');
+            
+            if (resultDiv) {
+                resultDiv.innerHTML = `
+                    <h3>Résultats du QCM</h3>
+                    <p>Score: ${score}/${total} (${percentage}%)</p>
+                    <p>${getScoreMessage(percentage)}</p>
+                `;
+            }
+        }
+
+        // Message selon le score
+        function getScoreMessage(score) {
+            if (score >= 80) return "Excellent travail! 🎉";
+            if (score >= 60) return "Bon travail! 👍";
+            if (score >= 40) return "Continuez à réviser! 📚";
+            return "Besoin de réviser davantage! 🎯";
+        }
+
+        // Charger les données des étudiants
+        function loadStudents() {
+            const studentsContent = document.getElementById('studentsContent');
+            
+            // Simuler un chargement
+            setTimeout(() => {
+                // Générer le tableau HTML
+                let tableHTML = `
+                    <table class="students-list">
+                        <thead>
+                            <tr>
+                                <th>Nom</th>
+                                <th>Présence</th>
+                                <th>CC (/20)</th>
+                                <th>EF (/20)</th>
+                                <th>Moyenne (/20)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                `;
+                
+                studentsData.forEach(student => {
+                    tableHTML += `
+                        <tr>
+                            <td>${student.name}</td>
+                            <td class="${student.presence === 'Présent' ? 'present' : 'absent'}">${student.presence}</td>
+                            <td class="grade">${student.cc !== null ? student.cc : '-'}</td>
+                            <td class="grade">${student.ef !== null ? student.ef : '-'}</td>
+                            <td class="grade">${student.moyenne !== null ? student.moyenne : '-'}</td>
+                        </tr>
+                    `;
+                });
+                
+                tableHTML += `
+                        </tbody>
+                    </table>
+                `;
+                
+                studentsContent.innerHTML = tableHTML;
+            }, 800);
+        }
+
+        // Vérifier la session au chargement de la page
+        function checkSession() {
+            const user = localStorage.getItem('currentUser');
+            
+            if (user) {
+                try {
+                    currentUser = JSON.parse(user);
+                    isAdmin = currentUser.role === 'admin';
+                    
+                    // Afficher le contenu principal
+                    showContent();
+                    
+                    // Afficher l'onglet admin si l'utilisateur est administrateur
+                    if (isAdmin) {
+                        document.getElementById('adminTab').style.display = 'block';
+                    }
+                } catch (e) {
+                    console.error('Erreur lors de la récupération de la session:', e);
+                    logout();
+                }
+            }
+        }
+
+        // Initialisation
+        document.addEventListener('DOMContentLoaded', function() {
+            // Vérifier la session existante
+            checkSession();
+            
+            // Afficher le premier onglet par défaut
+            showTab('cours');
+            
+            // Ajouter la gestion de la touche Entrée dans le formulaire de login
+            const passwordInput = document.getElementById('password');
+            if (passwordInput) {
+                passwordInput.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        login();
+                    }
+                });
             }
         });
     </script>
